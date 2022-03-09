@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Note App</title>
+  </head>
+  <body>
+    <div class="all-notes"></div>
+
+    <div class="open-modal-button">
+      <i class="fas fa-plus"></i>
+    </div>
+
+    <div class="add-note-background">
+      <div class="add-note-container">
+        <h2>Create New Note</h2>
+        <form>
+          <label>Note Title</label>
+          <input class="note-input" type="text" placeholder="Add new note" />
+          <label>Note Description</label>
+          <textarea
+            class="note-textarea"
+            placeholder="Add new note description"
+          ></textarea>
+          <div class="btn-container">
+            <button class="cancel-btn">Cancel</button>
+            <button class="create-btn">Create Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
