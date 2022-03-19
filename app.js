@@ -437,6 +437,9 @@ function getNotes(e) {
 
 
 
+
+
+
 // function editNote(e) {
 //   e.preventDefault()
 //   if(e.target.classList.contains('edit-note')) {

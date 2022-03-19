@@ -205,3 +205,11 @@ label {
 /* span {
   display: none;
 } */
+
+@media (max-width: 768px) {
+
+  .all-notes {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+}
