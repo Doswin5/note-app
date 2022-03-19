@@ -227,6 +227,7 @@ cancelBtn.addEventListener('click', hideAddNote)
 createBtn.addEventListener('click', createNote)
 allNotes.addEventListener('click', deleteNote)
 allNotes.addEventListener('click', editNote)
+window.addEventListener('DOMContentLoaded', getNotes)
 
 // For createNote(),
 
@@ -258,16 +259,15 @@ const textarea = document.querySelector('.note-textarea')
 
 function createNote(e) {
   e.preventDefault()
-
   // Temporary storage
   const inputValue = input.value
   const textareaValue = textarea.value
-
+  
   const note = new Note (inputValue, textareaValue)
   // console.log(note)
-
+  
   notes.push(note)
-  // console.log(notes)
+  getNotes(e)
 
   // Interface
   if (input.value === '' || textarea.value === '') {
@@ -316,7 +316,7 @@ function deleteNote(e) {
     })
     const deletedNoteIndex = notes.indexOf(deletedNote)
     notes.splice(deletedNoteIndex, 1)
-    console.log(notes)
+    // console.log(notes)
   }
   
 
@@ -329,24 +329,26 @@ function deleteNote(e) {
 
 function editNote(e) {
   e.preventDefault()
-  // Interface
   const editBtn = e.target
+  const parent = editBtn.parentElement.parentElement
+  
+  
+  // Interface
   if (editBtn.classList.contains('edit-note')){
     showAddNote(e)
-    const parent = editBtn.parentElement.parentElement
     let editTitle = parent.querySelector('.note-title').innerText
     let editDescription = parent.querySelector('.note-description').innerText
-
+    
     input.value = editTitle
     textarea.value = editDescription
-
+    
     addNoteBg.querySelector('h2').innerText = 'Edit Note'
     createBtn.className = 'edit-btn'
     createBtn.innerText = 'Edit Note'    
-
+    
     const editBtn2 = document.querySelector('.edit-btn')
     editBtn2.addEventListener('click', editCard)
-
+    
     function editCard(e) {
       e.preventDefault()
       parent.remove()
@@ -354,6 +356,49 @@ function editNote(e) {
       createBtn.className = 'create-btn'
       createBtn.innerText = 'Create Note'
     }
+  }
+
+  // Temporary Storage
+  if (editBtn.classList.contains('edit-note')) {
+    const editNoteId = parent.querySelector('span').innerText
+    const editNote = notes.find(note => {
+      return note.id == editNoteId
+    })
+    // console.log(editNote)
+    const editNoteIndex = notes.indexOf(editNote)
+    // console.log(editNoteIndex)
+    notes.splice(editNoteIndex, 1)
+    // console.log(notes)
+    const editBtn2 = document.querySelector('.edit-btn')
+    editBtn2.addEventListener('click', editCard)
+
+    function editCard(e){
+      e.preventDefault()
+      const inputValue = input.value
+      const textareaValue = textarea.value
+
+      const editNote = new Note(inputValue, textareaValue)
+      
+      notes.push(editNote)
+      notes.pop()
+      console.log(notes)
+    }
+  
+    
+    
+  }
+
+}
+
+function getNotes(e) {
+  e.preventDefault()
+  let noNote
+  if (notes.length === 0) {
+    allNotes.innerHTML = `<h2 class='hidden'>There are currently no notes here</h2>`
+
+  } else {
+    noNote = allNotes.querySelector('h2.hidden')
+    noNote.style.display = 'none'
   }
 }
 
